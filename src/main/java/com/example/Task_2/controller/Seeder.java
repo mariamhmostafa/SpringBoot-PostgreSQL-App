@@ -20,16 +20,4 @@ public class Seeder {
         databaseSeeder.seedDatabase();
         return "Database seeded!!";
     }
-
-    @GetMapping("/signature/{id}")
-    public String signature(@PathVariable String id) {
-        int total = 0;
-        for (int i = 0; i < id.length(); i++) {
-            total += Integer.parseInt(id.charAt(i)+"");
-        }
-
-        String result = "Mohamed + Ayman ID: " + id + "\n Total : " + total;
-        return result;
-
-    }
 }
