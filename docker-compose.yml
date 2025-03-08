@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      # Use the numbers after the dash in your ID (e.g., if ID is 52-8078, use 8078)
+      - "4086:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/mariam_52_4086
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+      YOUR_ID: "52-4086"
+      YOUR_NAME: "mariam"
+
+  db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: mariam_52_4086
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
